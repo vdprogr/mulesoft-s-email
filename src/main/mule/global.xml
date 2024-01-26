@@ -14,14 +14,14 @@ http://www.mulesoft.org/schema/mule/api-gateway http://www.mulesoft.org/schema/m
 	<http:request-connection host="${httpRequest.host}" port="${httpRequest.port}" protocol="HTTPS"/>
 	</http:request-config>
     <apikit:config name="s-email-notification-api-config" api="resource::cc443018-2073-47f7-8ff7-02852b41f062:s-email-notification-api:1.0.0:raml:zip:s-email-notification-api.raml" outboundHeadersMapName="outboundHeaders" httpStatusVarName="httpStatus" />
-	<global-property doc:name="Global Property" doc:id="301cec49-9450-4736-af72-ac8cf9dbd1b1" name="mule.env" value="dev" />
+	<global-property doc:name="Global Property" doc:id="301cec49-9450-4736-af72-ac8cf9dbd1b1" name="mule.env" value="local" />
 	<configuration-properties doc:name="Env Configuration properties" doc:id="13632a4e-e343-40b7-8144-4b47b177a560" file="properties/${mule.env}-config.yaml" />
 	<configuration-properties doc:name="API Configuration properties" doc:id="4445f70b-2e01-4040-89bc-b422f0cfae5a" file="properties/config.yaml" />
 	<secure-properties:config name="Secure_Properties_Config" doc:name="Secure Properties Config" doc:id="7b9669da-2d9c-4e3a-9300-792abb4c9270" file="properties/${mule.env}-secure-config.yaml" key="${encryption.key}" >
 		<secure-properties:encrypt algorithm="Blowfish" />
 	</secure-properties:config>
 	<http:listener-config name="s-email-notification-api-httpListenerConfig">
-        <http:listener-connection host="0.0.0.0" port="${httpListener.port}"/>
+        <http:listener-connection host="0.0.0.0" port="${http.port}"/>
         </http:listener-config>
 	<api-gateway:autodiscovery apiId="${api.instanceId}" ignoreBasePath="true" doc:name="API Autodiscovery" doc:id="4d2fda78-6d2e-4c53-ad0d-dfbad0332eef" flowRef="s-email-notification-api-main" />
 	
